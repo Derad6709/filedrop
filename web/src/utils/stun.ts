@@ -42,7 +42,7 @@ export function isValidStunUrl(url: string): boolean {
   }
 
   try {
-    // Parse the URL format: stun:host[:port] or stuns:host[:port]
+    // Parse the URL format: stun://host[:port] or stuns://host[:port]
     const match = trimmed.match(/^(stuns?):\/\/([^:/\s]+)(?::(\d+))?$/i);
     if (!match) {
       return false;
