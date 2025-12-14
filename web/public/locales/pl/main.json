@@ -57,6 +57,16 @@
     "autoDownload": "Pobierz wszystkie ukończone transfery",
     "displayIcons": "Pokaż ikony statusu klienta"
   },
+  "stunSelector": {
+    "label": "Serwer STUN",
+    "customPlaceholder": "np. stun://stun.example.com:3478",
+    "add": "Dodaj",
+    "remove": "Usuń",
+    "invalidUrl": "Nieprawidłowy URL STUN. Musi zaczynać się od stun:// lub stuns:// i zawierać prawidłowego hosta.",
+    "duplicateUrl": "Ten URL jest już na liście.",
+    "hint": "Dodaj co najmniej jeden URL serwera STUN, aby używać niestandardowych serwerów.",
+    "info": "Serwery STUN pomagają nawiązywać połączenia peer-to-peer. Zmiany mają zastosowanie do nowych połączeń."
+  },
   "transfers": {
     "title": {
       "incoming": "Przychodzące",

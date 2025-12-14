@@ -17,6 +17,7 @@ import { TransfersSection } from '../sections/Transfers/index.js';
 import { ChatSection } from '../sections/Chat/index.js';
 import { MobileTabs } from '../sections/MobileTabs/index.js';
 import { SettingsSection } from '../sections/Settings/index.js';
+import { StunSelector } from '../components/StunSelector.js';
 
 const ConnectSection = React.lazy(() => import('../sections/Connect/index.js'));
 
@@ -127,6 +128,9 @@ export const Home: React.FC = observer(() => {
           <IncompatibleBrowserSection />
           <NoticeSection />
           <YourTileSection />
+          <div className="subsection">
+            <StunSelector />
+          </div>
           <NetworkSection />
           <TransfersSection />
         </div>
