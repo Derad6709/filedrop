@@ -77,3 +77,39 @@ The following variables are used in the WebSockets server:
 | `TURN_EXPIRY`            | `3600`                          | TURN token expiration time (when in `hmac` mode), in seconds.                                                             |
 | `NOTICE_TEXT`            | null                            | Text of the notice to be displayed for all clients.                                                                       |
 | `NOTICE_URL`             | null                            | URL the notice should link to.                                                                                            |
+
+## Client-Side STUN Server Configuration
+
+In addition to the server-side STUN configuration, users can customize their STUN servers directly in the web interface:
+
+1. **Location**: The STUN server selector is located on the main page, below your name display.
+
+2. **Preset Options**:
+   - **Google STUN**: Uses Google's public STUN servers (default)
+   - **Cloudflare STUN**: Uses Cloudflare's public STUN server
+   - **Custom**: Allows you to add your own STUN server URLs
+
+3. **Adding Custom STUN Servers**:
+   - Select "Custom" from the dropdown
+   - Enter STUN URL in the format: `stun://hostname:port` or `stuns://hostname:port`
+   - Click the "+" button to add the URL
+   - Multiple STUN servers can be added for fallback
+
+4. **URL Validation**:
+   - Must start with `stun://` or `stuns://`
+   - Must include a valid hostname
+   - Port is optional (defaults to 3478)
+   - Invalid URLs are rejected with inline feedback
+
+5. **Important Notes**:
+   - Settings are stored in browser's localStorage and persist across sessions
+   - Changes only affect new connections; existing transfers are not interrupted
+   - Custom STUN settings override server-provided STUN servers
+   - TURN servers from the server configuration are always included alongside user-selected STUN servers
+
+**Example Custom STUN URLs**:
+```
+stun://stun.example.com:3478
+stuns://secure-stun.example.com:5349
+stun://stun.myserver.org
+```
