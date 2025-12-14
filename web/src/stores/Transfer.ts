@@ -280,7 +280,7 @@ export class Transfer {
       return;
     }
 
-    const connection = new RTCPeerConnection(this.network.rtcConfiguration);
+    const connection = new RTCPeerConnection(this.network.effectiveRtcConfiguration);
     this.peerConnection = connection;
 
     connection.addEventListener('icecandidate', e => {

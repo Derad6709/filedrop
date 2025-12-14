@@ -19,6 +19,7 @@ import { defaultAppName } from '../config.js';
 import { replaceUrlParameters } from '../utils/url.js';
 import { getItem, setItem } from '../utils/storage.js';
 import { settingsStore } from './SettingsStore.js';
+import { getIceServers } from '../utils/stun.js';
 
 export class NetworkStore {
   maxSize = 0;
@@ -83,6 +84,35 @@ export class NetworkStore {
     return [...this.networkClients.values()].filter(
       client => client.clientId !== this.connection.clientId
     );
+  }
+
+  get effectiveRtcConfiguration(): RTCConfiguration {
+    // Start with user's STUN configuration
+    const userIceServers = getIceServers(
+      settingsStore.stunConfig.presetId,
+      settingsStore.stunConfig.customUrls
+    );
+
+    // Merge with server-provided configuration
+    if (this.rtcConfiguration?.iceServers) {
+      // Combine user STUN servers with server-provided ICE servers (TURN, etc.)
+      const serverIceServers = this.rtcConfiguration.iceServers.filter(
+        server => {
+          // Keep TURN servers from the server config
+          const urls = Array.isArray(server.urls) ? server.urls : [server.urls];
+          return urls.some(url => url.startsWith('turn:') || url.startsWith('turns:'));
+        }
+      );
+
+      return {
+        iceServers: [...userIceServers, ...serverIceServers],
+      };
+    }
+
+    // If no server configuration, use user's STUN configuration
+    return {
+      iceServers: userIceServers,
+    };
   }
 
   updateTitle() {

@@ -57,6 +57,16 @@
     "autoDownload": "Download all complete transfers",
     "displayIcons": "Display client status icons"
   },
+  "stunSelector": {
+    "label": "STUN Server",
+    "customPlaceholder": "e.g., stun://stun.example.com:3478",
+    "add": "Add",
+    "remove": "Remove",
+    "invalidUrl": "Invalid STUN URL. Must start with stun:// or stuns:// and include a valid host.",
+    "duplicateUrl": "This URL is already in the list.",
+    "hint": "Add at least one STUN server URL to use custom servers.",
+    "info": "STUN servers help establish peer-to-peer connections. Changes apply to new connections."
+  },
   "transfers": {
     "title": {
       "incoming": "Incoming",
